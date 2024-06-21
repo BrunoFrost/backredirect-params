@@ -1,0 +1,60 @@
+<script>
+        var ber_settings = {
+            "redirectURL": "https://seusite.com.br", // Substituir pela URL a ser redirecionada. NÃO REMOVA AS ASPAS.
+            "events": {
+                "back": true,  // O botão voltar for clicado. Para desativar, marque como "false"
+                "exit_intent": true  // Quando for detectada uma exit intent. Para desativar, marque como "false"
+            }
+        };
+
+        function ber_doit() {
+            setTimeout(function() {
+                // Obter os parâmetros da URL atual
+                let param = location.search.slice(1);
+                let redirectURL = ber_settings.redirectURL;
+
+                // Se houver parâmetros, adicioná-los à URL de redirecionamento
+                if (param) {
+                    if (redirectURL.includes('?')) {
+                        redirectURL += "&" + param;
+                    } else {
+                        redirectURL += "?" + param;
+                    }
+                }
+
+                location.href = redirectURL;
+            }, 1);
+        }
+
+        history.pushState({}, "", location.href);
+        history.pushState({}, "", location.href);
+
+        if (ber_settings.events.back) {
+            window.onpopstate = function() {
+                ber_doit();
+            }
+        }
+
+        window.onload = function() {
+            // Evento de exit intent
+            if (ber_settings.events.exit_intent) {
+                jQuery(document).on("mouseleave", function(t) {
+                    if (t.clientY <= 0) ber_doit();
+                });
+            }
+
+            // Código para adicionar os parâmetros da URL aos links
+            let param = location.search.slice(1);
+            if (param != "") {
+                var qtd_links = document.querySelectorAll("a").length;
+                for (var changing = 0; changing < qtd_links; changing++) {
+                    var checkout_url = document.querySelectorAll("a")[changing].href;
+                    if (checkout_url.split('?')[1] === undefined) {
+                        document.querySelectorAll("a")[changing].href = checkout_url + "?" + param;
+                    } else {
+                        document.querySelectorAll("a")[changing].href = checkout_url + "&" + param;
+                    }
+                }
+            }
+        }
+    </script>
