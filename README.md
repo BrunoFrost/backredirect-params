@@ -6,9 +6,12 @@ Todas as páginas que tiverem o script, poderão definir uma 2º página de redi
 A função de backredirect poderá ser desativada a qualquer momento, mantendo apenas o keep-params.
 No backRedirect também poderá ser habilitado a função intentExit. Nesse caso apenas movendo o mouse para fora da página, será feito o redirecionamento. 
 
-Para isto, basta criar um: 
-```<script src="https://brunofrost.github.io/backredirect-params/backredirect-params.js"></script>``` 
-ao final da tag body.
+Para isto, basta seguir os passos:
+1. Abra a pasta backredirect-params, acessando esse link: ```https://github.com/BrunoFrost/backredirect-params/blob/main/backredirect-params```
+2. Copie o script e edite
+3. Altere a URL de destino para a sua.
+4. Desative, se necessário o backredirect alterando para "False". Por padrão vem ativo.
+5. Cole o Script dentro do HTML da página ao final da tag Body.
 
 # mas porque eu utilizaria isto?
 Simples! Ser redirecionado para uma 2º página após uma intenção de saída, aumenta ainda mais a chance de conversão em venda. Já em relação aos parâmetros, plataformas de afiliados, utilizam os parâmetros (utm_sources) para identificar a origem da venda.
